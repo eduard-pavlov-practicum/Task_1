@@ -1,5 +1,5 @@
 import pytest
-from constants.ingridients import ingridient_name, ingridient_type, ingridient_price
+from constants.ingridient import ingridient_name, ingridient_type, ingridient_price
 
 
 class TestIngridient:

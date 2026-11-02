@@ -1,8 +1,8 @@
 import pytest
-from bun import Bun
-from ingredient import Ingredient
+from praktikum.bun import Bun
+from praktikum.ingredient import Ingredient
 from constants.bun import bun_name, bun_price
-from constants.ingridients import ingridient_name, ingridient_type, ingridient_price
+from constants.ingridient import ingridient_name, ingridient_type, ingridient_price
 
 
 @pytest.fixture
