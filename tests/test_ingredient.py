@@ -3,6 +3,11 @@ from constants.ingridient import ingridient_name, ingridient_type, ingridient_pr
 
 
 class TestIngridient:
+    """
+    Внутри класса Ingridient нет никаких ветвлений (if/else), 
+    валидации входящих данных или обработки исключений. 
+    Параметризация избыточна.
+    """
 
     def test_get_type_returns_correct_type(self, ingredient_):
         assert ingredient_.get_type() == ingridient_type
