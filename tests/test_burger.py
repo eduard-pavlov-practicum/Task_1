@@ -1,11 +1,7 @@
 import pytest
-from unittest.mock import Mock
-from praktikum.burger import Burger
-from praktikum.bun import Bun
-from praktikum.ingredient import Ingredient
 from mocks.ingredient import mock_cheese, mock_cutlet, mock_sauce
 from mocks.bun import mock_bun
-from constants.bun import bun_name, bun_price
+from constants.bun import bun_name
 
 
 class TestBurgers:
@@ -36,12 +32,17 @@ class TestBurgers:
         assert len(burger.ingredients) == 1
         assert burger.ingredients[0] == expected_item
 
-    @pytest.mark.parametrize("invalid_index", [-5, 0, 3])
-    def test_remove_ingredient_invalid_index_raises_error(self, burger, invalid_index):
-        burger.ingredients = [mock_sauce, mock_cutlet]
-
-        if invalid_index == 0:
-            burger.ingredients = []  # Очищаем для проверки удаления из пустого списка
+    @pytest.mark.parametrize(
+        "ingredients, invalid_index",
+        [
+            ([mock_sauce, mock_cutlet], -5),
+            ([], 0),
+            ([mock_sauce, mock_cutlet], 3),
+        ],
+        ids=["negative_index", "empty_list_zero_index", "out_of_range_index"]
+        )
+    def test_remove_ingredient_invalid_index_raises_error(self, burger, ingredients, invalid_index):
+        burger.ingredients = list(ingredients)
 
         with pytest.raises(IndexError):
             burger.remove_ingredient(invalid_index)
